@@ -1,4 +1,12 @@
-# Default ignored files
+/target/
+/.idea/
+*.iml
+.classpath
+.project
+.settings/
+/.vscode/
+/.DS_Store
+docs/javadoc/# Default ignored files
 /shelf/
 /workspace.xml
 
