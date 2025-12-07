@@ -2,16 +2,29 @@ package br.com.dio.desafio.dominio;
 
 import java.util.*;
 
+/**
+ * Representa um desenvolvedor que pode se inscrever em bootcamps,
+ * progredir nos conteúdos e acumular XP.
+ */
 public class Dev {
     private String nome;
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
+    /**
+     * Inscreve este desenvolvedor no bootcamp informado, adicionando
+     * todos os conteúdos do bootcamp à lista de inscritos.
+     * @param bootcamp bootcamp a ser inscrito
+     */
     public void inscreverBootcamp(Bootcamp bootcamp){
         this.conteudosInscritos.addAll(bootcamp.getConteudos());
         bootcamp.getDevsInscritos().add(this);
     }
 
+    /**
+     * Avança no primeiro conteúdo inscrito, movendo-o para concluídos.
+     * Se não houver conteúdos inscritos, imprime mensagem de erro.
+     */
     public void progredir() {
         Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
         if(conteudo.isPresent()) {
@@ -22,6 +35,10 @@ public class Dev {
         }
     }
 
+    /**
+     * Calcula o total de XP acumulado pelos conteúdos concluídos.
+     * @return total de XP
+     */
     public double calcularTotalXp() {
         Iterator<Conteudo> iterator = this.conteudosConcluidos.iterator();
         double soma = 0;
@@ -36,7 +53,6 @@ public class Dev {
                 .mapToDouble(Conteudo::calcularXp)
                 .sum();*/
     }
-
 
     public String getNome() {
         return nome;
